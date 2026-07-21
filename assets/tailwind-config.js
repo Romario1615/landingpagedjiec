@@ -3,7 +3,7 @@ tailwind.config = {
     theme: {
         extend: {
             "colors": {
-                "gold-deep": "#8B6F1F",
+                "gold-deep": "#997619",
                 "tertiary-fixed-dim": "#a8c8ff",
                 "outline": "#849495",
                 "primary-fixed-dim": "#00dbe9",
@@ -30,7 +30,7 @@ tailwind.config = {
                 "on-surface": "#e5e2e3",
                 "on-error-container": "#ffdad6",
                 "surface-container": "#201f20",
-                "gold": "#C9A227",
+                "gold": "#EFB810",
                 "primary": "#dbfcff",
                 "surface-container-high": "#2a2a2b",
                 "primary-fixed": "#7df4ff",

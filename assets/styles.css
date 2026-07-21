@@ -1,8 +1,8 @@
 @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes reveal { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes highlightPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); border-color: rgba(255,255,255,0.1); }
-    30% { box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.5); border-color: #C9A227; }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 184, 16, 0); border-color: rgba(255,255,255,0.1); }
+    30% { box-shadow: 0 0 0 4px rgba(239, 184, 16, 0.5); border-color: #EFB810; }
 }
 @keyframes toastIn {
     from { opacity: 0; transform: translateY(12px); }
@@ -21,25 +21,47 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Depth: the card itself tilts toward the cursor (--tilt-x/--tilt-y, set on
+   mousemove by initSpotlightCards in site.js) and lifts slightly on hover,
+   like a physical object catching the light rather than a flat image. */
 .spotlight-card {
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --tilt-scale: 1;
+    transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(var(--tilt-scale));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 .spotlight-card:hover {
-    transform: scale(1.02);
+    --tilt-scale: 1.02;
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.65), 0 0 0 1px rgba(239, 184, 16,0.12);
 }
 .spotlight-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(201, 162, 39, 0.12), transparent 40%);
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(239, 184, 16, 0.18), transparent 45%);
     z-index: 1;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s;
 }
 .spotlight-card:hover::before { opacity: 1; }
+/* Thin rim-light along the edge, same cursor position — reads as light
+   grazing a 3D surface rather than just a glow painted on top. */
+.spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(239, 184, 16,0.4);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.spotlight-card:hover::after { opacity: 1; }
 
 .gold-glow-btn {
     border-radius: 9999px;
@@ -51,12 +73,12 @@
 .footer-marble {
     background:
         linear-gradient(120deg, rgba(255,255,255,0.025) 0%, transparent 18%, transparent 46%, rgba(255,255,255,0.02) 58%, transparent 75%, rgba(255,255,255,0.015) 100%),
-        radial-gradient(ellipse 700px 400px at 15% 0%, rgba(201,162,39,0.06), transparent 70%),
-        radial-gradient(ellipse 700px 400px at 85% 100%, rgba(201,162,39,0.05), transparent 70%),
+        radial-gradient(ellipse 700px 400px at 15% 0%, rgba(239, 184, 16,0.06), transparent 70%),
+        radial-gradient(ellipse 700px 400px at 85% 100%, rgba(239, 184, 16,0.05), transparent 70%),
         #08080a;
 }
 .gold-glow-btn:hover {
-    box-shadow: 0 0 30px rgba(201, 162, 39, 0.75);
+    box-shadow: 0 0 30px rgba(239, 184, 16, 0.75);
     transform: translateY(-2px) scale(1.05);
 }
 
@@ -92,9 +114,9 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
     inset: 0;
     z-index: -2;
     background:
-        radial-gradient(ellipse 900px 600px at 18% 12%, rgba(201,162,39,0.14), transparent 60%),
-        radial-gradient(ellipse 900px 600px at 82% 88%, rgba(201,162,39,0.11), transparent 60%),
-        radial-gradient(ellipse 1400px 900px at 50% 45%, rgba(201,162,39,0.06), transparent 70%),
+        radial-gradient(ellipse 900px 600px at 18% 12%, rgba(239, 184, 16,0.14), transparent 60%),
+        radial-gradient(ellipse 900px 600px at 82% 88%, rgba(239, 184, 16,0.11), transparent 60%),
+        radial-gradient(ellipse 1400px 900px at 50% 45%, rgba(239, 184, 16,0.06), transparent 70%),
         #08080a;
     animation: backdropGlow 10s ease-in-out infinite;
 }
@@ -124,7 +146,8 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
 /* assets/carousel/<n>.jpg — renders on top of (and hides) the dashed
    placeholder underneath once it loads; removed entirely on 404 so the
    placeholder shows through instead of a broken-image icon. */
-.hero-carousel-photo {
+.hero-carousel-photo,
+.hero-carousel-video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -132,24 +155,15 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
     object-fit: cover;
 }
 
+.hero-carousel-video {
+    background: #000;
+}
+
 .hero-carousel-placeholder {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
     background: rgba(255,255,255,0.02);
-    border: 1px dashed rgba(201,162,39,0.35);
-    color: rgba(201,162,39,0.7);
-}
-.hero-carousel-placeholder .material-symbols-outlined { font-size: 40px; }
-.hero-carousel-placeholder-label {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    border: 1px dashed rgba(239, 184, 16,0.35);
 }
 
 .hero-carousel-arrow {
@@ -164,12 +178,12 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
     align-items: center;
     justify-content: center;
     background: rgba(8,8,10,0.5);
-    border: 1px solid rgba(201,162,39,0.4);
-    color: #C9A227;
+    border: 1px solid rgba(239, 184, 16,0.4);
+    color: #EFB810;
     backdrop-filter: blur(6px);
     transition: all 0.2s ease;
 }
-.hero-carousel-arrow:hover { background: rgba(201,162,39,0.2); }
+.hero-carousel-arrow:hover { background: rgba(239, 184, 16,0.2); }
 .hero-carousel-prev { left: 1rem; }
 .hero-carousel-next { right: 1rem; }
 
@@ -189,12 +203,12 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
     background: rgba(255,255,255,0.35);
     transition: all 0.2s ease;
 }
-.hero-carousel-dot.is-active { background: #C9A227; width: 22px; }
+.hero-carousel-dot.is-active { background: #EFB810; width: 22px; }
 
 /* Accessibility: visible focus for keyboard users only */
 :focus { outline: none; }
 :focus-visible {
-    outline: 2px solid #C9A227;
+    outline: 2px solid #EFB810;
     outline-offset: 3px;
     border-radius: 2px;
 }
@@ -204,7 +218,7 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
     left: 1rem;
     top: -4rem;
     z-index: 100;
-    background: #C9A227;
+    background: #EFB810;
     color: #050506;
     padding: 0.75rem 1.25rem;
     font-weight: 700;
@@ -218,8 +232,8 @@ body { background-color: #0e0e0f; color: #e5e2e3; }
 
 /* Active nav link */
 .nav-link[aria-current="page"] {
-    color: #C9A227;
-    border-bottom-color: #C9A227;
+    color: #EFB810;
+    border-bottom-color: #EFB810;
 }
 
 /* Native dialogs used for mobile menu + search: reset UA chrome, own the layout */
@@ -273,7 +287,7 @@ dialog#mobile-menu::backdrop, dialog#search-dialog::backdrop {
 .toast {
     animation: toastIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     background: #201f20;
-    border: 1px solid rgba(201, 162, 39,0.4);
+    border: 1px solid rgba(239, 184, 16,0.4);
     border-radius: 9999px;
     color: #e5e2e3;
     padding: 0.75rem 1.25rem;
@@ -289,7 +303,7 @@ dialog#mobile-menu::backdrop, dialog#search-dialog::backdrop {
     overflow: hidden;
 }
 .lang-toggle button[aria-pressed="true"] {
-    background: #C9A227;
+    background: #EFB810;
     color: #050506;
 }
 
@@ -315,13 +329,13 @@ dialog#mobile-menu::backdrop, dialog#search-dialog::backdrop {
     white-space: nowrap;
 }
 .filter-chip[aria-pressed="true"] {
-    background: #C9A227;
+    background: #EFB810;
     color: #050506;
-    border-color: #C9A227;
+    border-color: #EFB810;
 }
 .filter-chip:not([aria-pressed="true"]):hover {
-    border-color: #C9A227;
-    color: #C9A227;
+    border-color: #EFB810;
+    color: #EFB810;
 }
 
 /* Cart line items */
@@ -337,7 +351,7 @@ dialog#mobile-menu::backdrop, dialog#search-dialog::backdrop {
     border-radius: 9999px;
     transition: all 0.2s ease;
 }
-.qty-btn:hover { border-color: #C9A227; color: #C9A227; }
+.qty-btn:hover { border-color: #EFB810; color: #EFB810; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

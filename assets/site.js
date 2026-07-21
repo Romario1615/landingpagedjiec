@@ -345,14 +345,41 @@
         document.querySelectorAll("section, .reveal-element").forEach((el) => observer.observe(el));
     }
 
+    // Spotlight glow + 3D tilt for `.spotlight-card` elements (category
+    // cards, product cards, industrial panels). Delegated at the document
+    // level — deliberately, not bound per-element — so it keeps working on
+    // cards that get re-rendered later (catalog filters, language switch)
+    // without needing to re-wire listeners every time.
     function initSpotlightCards() {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const canHover = window.matchMedia("(hover: hover)").matches;
+        const enableTilt = !reducedMotion && canHover;
+
         document.addEventListener("mousemove", (e) => {
             const card = e.target.closest && e.target.closest(".spotlight-card");
             if (!card) return;
             const rect = card.getBoundingClientRect();
-            card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
-            card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+            const px = e.clientX - rect.left;
+            const py = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${px}px`);
+            card.style.setProperty("--mouse-y", `${py}px`);
+            if (enableTilt) {
+                card.style.setProperty("--tilt-x", `${((0.5 - py / rect.height) * 12).toFixed(2)}deg`);
+                card.style.setProperty("--tilt-y", `${((px / rect.width - 0.5) * 12).toFixed(2)}deg`);
+            }
         });
+
+        if (enableTilt) {
+            // mouseout (not mouseleave) because it bubbles, which is what
+            // makes the delegation above work for dynamically-added cards.
+            document.addEventListener("mouseout", (e) => {
+                const card = e.target.closest && e.target.closest(".spotlight-card");
+                if (!card) return;
+                if (card.contains(e.relatedTarget)) return; // moved within the same card, not off it
+                card.style.setProperty("--tilt-x", "0deg");
+                card.style.setProperty("--tilt-y", "0deg");
+            });
+        }
     }
 
     // Full-page ambient particle field: white / near-black / gold flecks that
@@ -365,8 +392,8 @@
         if (prefersReducedMotion) return;
 
         const ctx = canvas.getContext("2d");
-        const BASE_COLORS = ["#e5e2e3", "#3a3a3a", "#C9A227"];
-        const GLOW_COLOR = "201, 162, 39"; // matches #page-backdrop's gold glow, as an rgb triplet for shadow/fill use
+        const BASE_COLORS = ["#e5e2e3", "#3a3a3a", "#EFB810"];
+        const GLOW_COLOR = "239, 184, 16"; // matches #page-backdrop's gold glow, as an rgb triplet for shadow/fill use
         let particles = [];
         const mouse = { x: null, y: null };
 
@@ -512,10 +539,11 @@
     }
 
     // Interactive hero/banner carousel. Each slide tries to load
-    // assets/carousel/<n>.jpg; if that file doesn't exist yet, the <img>
-    // 404s and we swap in a dashed placeholder instead of a broken-image
-    // icon. Multiple independent instances can coexist on a page; each
-    // `.hero-carousel` root manages its own state.
+    // assets/carousel/<n>.jpg; the second slide can also use a video file
+    // such as assets/carousel/Video1.mp4. If the media is missing, the
+    // placeholder shows instead of a broken-image icon. Multiple
+    // independent instances can coexist on a page; each `.hero-carousel`
+    // root manages its own state.
     function initHeroCarousel() {
         const t = window.DJI_I18N.t;
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -527,14 +555,23 @@
             const nextBtn = root.querySelector(".hero-carousel-next");
             if (!track) return;
 
-            track.innerHTML = Array.from({ length: CAROUSEL_PLACEHOLDER_COUNT }, (_, i) => `
+            track.innerHTML = Array.from({ length: CAROUSEL_PLACEHOLDER_COUNT }, (_, i) => {
+                if (i === 1) {
+                    return `
+<div class="hero-carousel-slide${i === 0 ? " is-active" : ""}">
+  <video class="hero-carousel-video" autoplay muted loop playsinline poster="${CAROUSEL_IMAGE_FOLDER}2.jpg">
+    <source src="${CAROUSEL_IMAGE_FOLDER}Video1.mp4" type="video/mp4"/>
+  </video>
+  <span class="hero-carousel-placeholder" aria-hidden="true"></span>
+</div>`;
+                }
+
+                return `
 <div class="hero-carousel-slide${i === 0 ? " is-active" : ""}">
   <img alt="" class="hero-carousel-photo" src="${CAROUSEL_IMAGE_FOLDER}${i + 1}.jpg"/>
-  <span class="hero-carousel-placeholder">
-    <span class="material-symbols-outlined" aria-hidden="true">add_photo_alternate</span>
-    <span class="hero-carousel-placeholder-label">${t("carousel_placeholder_label")} ${i + 1}</span>
-  </span>
-</div>`).join("");
+  <span class="hero-carousel-placeholder" aria-hidden="true"></span>
+</div>`;
+            }).join("");
             track.querySelectorAll(".hero-carousel-photo").forEach((img) => {
                 img.addEventListener("error", () => img.remove(), { once: true });
             });
@@ -546,6 +583,8 @@
 
             const slides = track.querySelectorAll(".hero-carousel-slide");
             const dots = dotsWrap ? dotsWrap.querySelectorAll(".hero-carousel-dot") : [];
+            const videoSlideIndex = 1;
+            const videoSlideDuration = 60000;
             let index = 0;
             let timer = null;
 
@@ -556,9 +595,15 @@
                 slides[index].classList.add("is-active");
                 if (dots[index]) { dots[index].classList.add("is-active"); dots[index].setAttribute("aria-current", "true"); }
             }
+            function getSlideDuration(currentIndex) {
+                return currentIndex === videoSlideIndex ? videoSlideDuration : Number(root.dataset.interval) || 5500;
+            }
             function start() {
                 if (reducedMotion) return;
-                timer = window.setInterval(() => goTo(index + 1), Number(root.dataset.interval) || 5500);
+                timer = window.setInterval(() => {
+                    goTo(index + 1);
+                    restart();
+                }, getSlideDuration(index));
             }
             function restart() {
                 if (timer) window.clearInterval(timer);
