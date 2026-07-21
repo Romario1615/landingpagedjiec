@@ -1,0 +1,284 @@
+@keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes reveal { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes highlightPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); border-color: rgba(255,255,255,0.1); }
+    30% { box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.5); border-color: #00F0FF; }
+}
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-element { opacity: 0; }
+.animate-reveal { animation: fadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spotlight-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.spotlight-card:hover {
+    transform: scale(1.02);
+}
+.spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 240, 255, 0.12), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.spotlight-card:hover::before { opacity: 1; }
+
+.neon-glow-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neon-glow-btn:hover {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.mag-glow-btn:hover {
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Compensates for the fixed nav bar on every anchor / scrollIntoView jump,
+   native or scripted, instead of tagging each scroll target individually. */
+html { scroll-padding-top: 6rem; }
+
+body { background-color: #0e0e0f; color: #e5e2e3; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.material-symbols-outlined.is-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.hero-image-container {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+/* Accessibility: visible focus for keyboard users only */
+:focus { outline: none; }
+:focus-visible {
+    outline: 2px solid #00F0FF;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    background: #00F0FF;
+    color: #050506;
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* Active nav link */
+.nav-link[aria-current="page"] {
+    color: #00F0FF;
+    border-bottom-color: #00F0FF;
+}
+
+/* Native dialogs used for mobile menu + search: reset UA chrome, own the layout */
+dialog#mobile-menu, dialog#search-dialog {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+}
+dialog#mobile-menu::backdrop, dialog#search-dialog::backdrop {
+    background: rgba(5, 5, 6, 0.7);
+    backdrop-filter: blur(6px);
+}
+.menu-panel {
+    margin-left: auto;
+    height: 100%;
+    width: min(85vw, 380px);
+    background: #0e0e0f;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+.search-panel {
+    margin: 0 auto;
+    margin-top: min(15vh, 120px);
+    width: min(92vw, 640px);
+}
+
+.cart-badge {
+    transform: scale(0);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cart-badge.is-visible { transform: scale(1); }
+
+.highlight-pulse { animation: highlightPulse 1.4s ease-out 1; }
+
+#toast-region {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+.toast {
+    animation: toastIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    background: #201f20;
+    border: 1px solid rgba(0,240,255,0.4);
+    color: #e5e2e3;
+    padding: 0.75rem 1.25rem;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.lang-toggle button[aria-pressed="true"] {
+    background: #00F0FF;
+    color: #050506;
+}
+
+/* Compact page header used on catalog / cart / search (utility pages
+   don't get the full particle hero — keeps them fast and focused) */
+.page-header {
+    padding-top: 7.5rem;
+    padding-bottom: 3rem;
+}
+@media (min-width: 768px) {
+    .page-header { padding-top: 9rem; }
+}
+
+/* Category filter chips (catalog) */
+.filter-chip {
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.5rem 1.25rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.filter-chip[aria-pressed="true"] {
+    background: #00F0FF;
+    color: #050506;
+    border-color: #00F0FF;
+}
+.filter-chip:not([aria-pressed="true"]):hover {
+    border-color: #00F0FF;
+    color: #00F0FF;
+}
+
+/* Cart line items */
+.cart-line { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.cart-line:last-child { border-bottom: none; }
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s ease;
+}
+.qty-btn:hover { border-color: #00F0FF; color: #00F0FF; }
+
+/* ------------------------------------------------------------------ */
+/* Experiencia 3D (WebGL upsell page)                                  */
+/* ------------------------------------------------------------------ */
+
+.nav-3d-pill {
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    color: #00F0FF;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.65rem;
+    transition: all 0.2s ease;
+}
+.nav-3d-pill:hover {
+    background: rgba(0, 240, 255, 0.12);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+}
+.nav-3d-pill[aria-current="page"] {
+    background: #00F0FF;
+    color: #050506;
+}
+
+/* Fixed, page-wide meteor canvas — sits above section content (so meteors
+   visually overlap cards) but below the nav bar and below native <dialog>
+   elements (those render in the browser's top layer regardless of z-index). */
+#meteor-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Punched by assets/webgl-meteors.js when a meteor's projected position
+   overlaps a card/button/section currently on screen. --meteor-impact-color
+   is set inline per-hit to match that meteor's color. */
+@keyframes meteorImpact {
+    0% { transform: scale(1) rotate(0deg); }
+    18% { transform: scale(1.045) rotate(-1.2deg); }
+    38% { transform: scale(0.98) rotate(1deg); }
+    60% { transform: scale(1.02) rotate(-0.5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+.meteor-impact {
+    animation: meteorImpact 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    box-shadow:
+        0 0 0 2px var(--meteor-impact-color, #00F0FF),
+        0 0 45px var(--meteor-impact-color, #00F0FF);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #meteor-canvas { display: none; }
+    .meteor-impact { animation: none; box-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal-element { opacity: 1 !important; }
+    #particle-canvas { display: none; }
+}

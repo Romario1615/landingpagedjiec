@@ -1,0 +1,8 @@
+# Unrelated tool repos cloned alongside this project (not part of the site)
+/impeccable/
+/taste-skill/
+/ui-ux-pro-max-skill/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db

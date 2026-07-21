@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="search_page_title">Buscar | DJI Ecuador</title>
+<meta content="Busca drones, cámaras de acción y accesorios DJI disponibles en Ecuador." data-i18n-content="search_meta_description" id="meta-description" name="description"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="assets/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="assets/styles.css" rel="stylesheet"/>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<a class="skip-link" data-i18n="skip_link" href="#main-content">Saltar al contenido principal</a>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-overlay backdrop-blur-xl border-b border-glass-stroke">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="flex items-center" data-i18n-aria-label="nav_home_aria" href="index.html">
+<img alt="DJI Ecuador" class="h-8 md:h-10 object-contain" data-i18n-alt="nav_logo_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLtIhHDDh10Xw-SRWrrQvQgSsjcfPFUHQMZUkjqm0zzsVrJELJyHNorlxC3lVucoYQHYh96GRKpeE1wT92Zn6YikBgxUuEcaCcgyuc_ajFWHvwj9sDB5LdbDkkc4b3FHfeZFvmShA2m02MSh_tFf9WFwCC1OuAN8kM_6Kz_PxFHTiS9FtzbnZIh_mc_E2P_8qociMKVNnzGEASoZKBb8GxEB90Q8sJsJTU6PedXaUyZ6vnRL793eH7tphRQ"/>
+</a>
+<div class="hidden md:flex space-x-8 items-center" id="primary-nav">
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_drones" href="catalogo.html?cat=drones">DRONES</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_camaras" href="catalogo.html?cat=camaras">CÁMARAS</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_estabilizadores" href="catalogo.html?cat=accesorios">ESTABILIZADORES</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_accesorios" href="catalogo.html?cat=accesorios">ACCESORIOS</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_soporte" href="index.html#soporte">SOPORTE</a>
+</div>
+<div class="flex items-center space-x-2 md:space-x-4">
+<a class="nav-3d-pill hidden sm:flex items-center gap-1.5" data-i18n-aria-label="nav_3d_aria" href="experiencia-3d.html">
+<span class="material-symbols-outlined text-[16px]" aria-hidden="true">deployed_code</span>
+<span>3D</span>
+</a>
+<div class="lang-toggle hidden md:flex items-center border border-glass-stroke text-[11px] font-label-caps tracking-wider" role="group" data-i18n-aria-label="lang_switch_aria">
+<button aria-pressed="true" class="js-lang-btn px-2.5 py-1.5 transition-colors" data-lang="es" type="button">ES</button>
+<button aria-pressed="false" class="js-lang-btn px-2.5 py-1.5 transition-colors" data-lang="en" type="button">EN</button>
+</div>
+<button aria-label="Buscar" class="material-symbols-outlined text-neon-cyan cursor-pointer" data-i18n-aria-label="search_aria" id="open-search" type="button">search</button>
+<button class="material-symbols-outlined text-on-surface cursor-pointer hover:text-neon-cyan transition-colors" data-i18n-aria-label="account_aria" data-i18n-title="account_soon" title="Próximamente" type="button">person</button>
+<a aria-label="Ver carrito" class="relative material-symbols-outlined text-on-surface cursor-pointer hover:text-neon-cyan transition-colors" data-i18n-aria-label="nav_cart_aria" href="carrito.html">
+                shopping_cart
+                <span class="cart-badge js-cart-badge absolute -top-2 -right-2 bg-neon-magenta text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+</a>
+<a class="hidden md:block bg-neon-cyan text-deep-space px-6 py-2 font-label-caps text-[12px] font-bold tracking-tighter neon-glow-btn transition-all" data-i18n="nav_comprar" href="catalogo.html">
+                COMPRAR
+            </a>
+<button aria-controls="mobile-menu" aria-label="Abrir menú" class="material-symbols-outlined md:hidden text-on-surface" data-i18n-aria-label="menu_open_aria" id="open-mobile-menu" type="button">menu</button>
+</div>
+</div>
+</nav>
+
+<!-- Mobile menu (native dialog: built-in focus trap + Escape-to-close) -->
+<dialog id="mobile-menu">
+<div class="menu-panel flex flex-col p-8">
+<div class="flex justify-between items-center mb-12">
+<span class="font-label-caps text-[12px] tracking-widest text-outline" data-i18n="menu_title">MENÚ</span>
+<button aria-label="Cerrar menú" class="material-symbols-outlined text-on-surface" data-i18n-aria-label="menu_close_aria" id="close-mobile-menu" type="button">close</button>
+</div>
+<nav class="flex flex-col gap-6" data-i18n-aria-label="mobile_nav_aria">
+<a class="font-title-md text-2xl js-close-menu" data-i18n="nav_drones" href="catalogo.html?cat=drones">DRONES</a>
+<a class="font-title-md text-2xl js-close-menu" data-i18n="nav_camaras" href="catalogo.html?cat=camaras">CÁMARAS</a>
+<a class="font-title-md text-2xl js-close-menu" data-i18n="nav_estabilizadores" href="catalogo.html?cat=accesorios">ESTABILIZADORES</a>
+<a class="font-title-md text-2xl js-close-menu" data-i18n="nav_accesorios" href="catalogo.html?cat=accesorios">ACCESORIOS</a>
+<a class="font-title-md text-2xl js-close-menu" data-i18n="nav_soporte" href="index.html#soporte">SOPORTE</a>
+<a class="font-title-md text-2xl js-close-menu flex items-center gap-3 text-neon-cyan" href="experiencia-3d.html">
+<span class="material-symbols-outlined" aria-hidden="true">deployed_code</span>
+<span data-i18n="promo3d_title">Experiencia 3D Interactiva</span>
+</a>
+<a class="font-title-md text-2xl js-close-menu flex items-center gap-3" href="carrito.html">
+<span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
+<span data-i18n="nav_cart_aria">Ver carrito</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-glass-stroke flex flex-col gap-6">
+<div class="lang-toggle flex items-center border border-glass-stroke text-[12px] font-label-caps tracking-wider w-fit" role="group" data-i18n-aria-label="lang_switch_aria">
+<button aria-pressed="true" class="js-lang-btn px-3 py-2 transition-colors" data-lang="es" type="button">ES</button>
+<button aria-pressed="false" class="js-lang-btn px-3 py-2 transition-colors" data-lang="en" type="button">EN</button>
+</div>
+<a class="w-full text-center bg-neon-cyan text-deep-space px-6 py-3 font-label-caps text-[12px] font-bold tracking-tighter js-close-menu" data-i18n="nav_comprar" href="catalogo.html">COMPRAR</a>
+</div>
+</div>
+</dialog>
+
+<!-- Search dialog (header shortcut — same destination as the on-page search box below) -->
+<dialog id="search-dialog">
+<div class="search-panel glass-panel p-6">
+<div class="flex items-center gap-3 border-b border-glass-stroke pb-4 mb-4">
+<span class="material-symbols-outlined text-neon-cyan" aria-hidden="true">search</span>
+<input aria-label="Buscar productos" autocomplete="off" class="flex-1 bg-transparent border-none outline-none text-lg placeholder:text-outline" data-i18n-aria-label="search_input_aria" data-i18n-placeholder="search_placeholder" id="search-input" placeholder="Buscar drones, cámaras, accesorios..." type="text"/>
+<button aria-label="Cerrar búsqueda" class="material-symbols-outlined text-on-surface" data-i18n-aria-label="search_close_aria" id="close-search" type="button">close</button>
+</div>
+<ul class="flex flex-col gap-1 max-h-[50vh] overflow-y-auto" id="search-results"></ul>
+<p class="text-outline text-sm py-4 text-center" data-i18n="search_empty" id="search-empty">Escribe para buscar en el catálogo.</p>
+<a class="hidden items-center gap-2 text-neon-cyan font-label-caps text-[12px] tracking-wider pt-2 border-t border-glass-stroke" id="search-view-all">
+<span data-i18n="search_view_all_results">Ver todos los resultados</span> <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+</a>
+</div>
+</dialog>
+
+<main id="main-content">
+<div class="page-header px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<nav aria-label="Breadcrumb" class="text-xs text-outline mb-4 font-label-caps tracking-wider flex items-center gap-2">
+<a class="hover:text-neon-cyan transition-colors" data-i18n="breadcrumb_home" href="index.html">Inicio</a>
+<span aria-hidden="true">/</span>
+<span class="text-on-surface" data-i18n="breadcrumb_search">Búsqueda</span>
+</nav>
+<h1 class="font-display-lg text-[36px] md:text-[48px]" data-i18n="search_header_title">Resultados de Búsqueda</h1>
+</div>
+
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto pb-24">
+<div class="max-w-2xl mb-10">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-neon-cyan" aria-hidden="true">search</span>
+<label class="sr-only" data-i18n="search_input_aria" for="page-search-input">Buscar productos</label>
+<input autocomplete="off" class="w-full bg-surface-container border border-glass-stroke pl-12 pr-4 py-4 text-lg text-on-surface focus:border-neon-cyan transition-all placeholder:text-outline" data-i18n-placeholder="search_placeholder" id="page-search-input" placeholder="Buscar drones, cámaras, accesorios..." type="text"/>
+</div>
+</div>
+<p class="text-outline text-sm mb-8" id="search-results-count"></p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10" id="search-results-grid"></div>
+<div class="glass-panel p-16 flex flex-col items-center text-center gap-4 hidden" id="search-no-query">
+<span class="material-symbols-outlined text-neon-cyan text-6xl" aria-hidden="true">travel_explore</span>
+<h2 class="font-title-md text-2xl" data-i18n="search_no_query_title">¿Qué estás buscando?</h2>
+<p class="text-outline max-w-md" data-i18n="search_no_query_desc">Escribe el nombre de un producto o categoría para empezar.</p>
+</div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-deep-space py-24 border-t border-glass-stroke">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col space-y-8">
+<img alt="DJI Ecuador" class="h-12 object-contain w-fit" data-i18n-alt="nav_logo_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLtIhHDDh10Xw-SRWrrQvQgSsjcfPFUHQMZUkjqm0zzsVrJELJyHNorlxC3lVucoYQHYh96GRKpeE1wT92Zn6YikBgxUuEcaCcgyuc_ajFWHvwj9sDB5LdbDkkc4b3FHfeZFvmShA2m02MSh_tFf9WFwCC1OuAN8kM_6Kz_PxFHTiS9FtzbnZIh_mc_E2P_8qociMKVNnzGEASoZKBb8GxEB90Q8sJsJTU6PedXaUyZ6vnRL793eH7tphRQ"/>
+<p class="text-outline text-body-md" data-i18n="footer_about">Distribuidores autorizados líderes en tecnología de drones y estabilización en el mercado ecuatoriano.</p>
+<div class="flex space-x-4">
+<a aria-label="Instagram" class="text-outline hover:text-neon-cyan transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg>
+</a>
+<a aria-label="YouTube" class="text-outline hover:text-neon-magenta transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+</a>
+<a aria-label="TikTok" class="text-outline hover:text-neon-cyan transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"></path></svg>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_categories_heading">CATEGORÍAS</h5>
+<ul class="space-y-3 text-outline text-body-md">
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_consumo" href="catalogo.html?cat=drones">Consumo</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_industrial" href="catalogo.html?cat=enterprise">Industrial</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_camaras" href="catalogo.html?cat=camaras">Cámaras de Acción</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_estabilizadores" href="catalogo.html?cat=accesorios">Estabilizadores</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_support_heading">SOPORTE</h5>
+<ul class="space-y-3 text-outline text-body-md">
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_tech" href="index.html#soporte">Servicio Técnico</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_warranty" href="index.html#soporte">Garantías</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_shipping" href="index.html#soporte">Políticas de Envío</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_contact" href="index.html#soporte">Contacto</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_newsletter_heading">NEWSLETTER</h5>
+<p class="text-outline text-body-md" data-i18n="footer_newsletter_desc">Recibe las últimas novedades y ofertas exclusivas.</p>
+<form class="relative" id="newsletter-form">
+<label class="sr-only" data-i18n="footer_newsletter_email_label" for="newsletter-email">Correo electrónico</label>
+<input class="w-full bg-surface-container border-none border-b border-glass-stroke py-3 font-code-sm text-neon-cyan focus:ring-0 focus:border-neon-cyan transition-all" data-i18n-placeholder="footer_newsletter_placeholder" id="newsletter-email" placeholder="Email" required="" type="email"/>
+<button aria-label="Suscribirse" class="absolute right-0 top-1/2 -translate-y-1/2 text-neon-cyan p-2" data-i18n-aria-label="footer_newsletter_submit_aria" type="submit">
+<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<div class="mt-24 pt-8 border-t border-glass-stroke text-center">
+<p class="font-label-caps text-[10px] text-outline tracking-widest opacity-60" data-i18n="footer_rights">© 2024 DJI ECUADOR. TODOS LOS DERECHOS RESERVADOS. DISTRIBUIDOR AUTORIZADO.</p>
+</div>
+</footer>
+<!-- FAB for WhatsApp -->
+<a aria-label="Contactar por WhatsApp" class="fixed bottom-8 right-8 z-[60] bg-[#25D366] w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform mag-glow-btn" data-i18n-aria-label="whatsapp_aria" href="#">
+<svg fill="white" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path>
+</svg>
+</a>
+
+<div aria-live="polite" id="toast-region"></div>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script>
+    (function () {
+        var input = document.getElementById("page-search-input");
+        var grid = document.getElementById("search-results-grid");
+        var countEl = document.getElementById("search-results-count");
+        var noQueryEl = document.getElementById("search-no-query");
+
+        function renderResultCard(item) {
+            if (item.type === "product") {
+                return DJI_SITE.renderProductCard(DJI_SITE.findProduct(item.id));
+            }
+            return (
+                '<a class="glass-panel spotlight-card reveal-element p-8 flex flex-col items-center justify-center gap-4 text-center hover:border-neon-cyan transition-all" href="' + item.href + '">' +
+                '<span class="material-symbols-outlined text-neon-cyan text-4xl" aria-hidden="true">category</span>' +
+                '<h3 class="font-title-md text-lg">' + DJI_SITE.escapeHtml(item.label) + "</h3>" +
+                "</a>"
+            );
+        }
+
+        function run(query) {
+            var trimmed = query.trim();
+            var url = new URL(location.href);
+            if (trimmed) url.searchParams.set("q", trimmed);
+            else url.searchParams.delete("q");
+            history.replaceState(null, "", url);
+
+            if (!trimmed) {
+                grid.innerHTML = "";
+                countEl.textContent = "";
+                noQueryEl.classList.remove("hidden");
+                return;
+            }
+            noQueryEl.classList.add("hidden");
+
+            var matches = DJI_SITE.buildSearchIndex().filter(function (item) {
+                return item.label.toLowerCase().indexOf(trimmed.toLowerCase()) !== -1;
+            });
+
+            if (matches.length === 0) {
+                countEl.textContent = "";
+                grid.innerHTML = '<p class="text-outline col-span-full text-center py-16">' + DJI_I18N.t("search_no_results") + ' "' + DJI_SITE.escapeHtml(query) + '"</p>';
+                return;
+            }
+
+            var noun = matches.length === 1 ? DJI_I18N.t("search_results_count_singular") : DJI_I18N.t("search_results_count_plural");
+            countEl.textContent = DJI_I18N.t("search_results_for") + ' "' + query + '" — ' + matches.length + " " + noun;
+            grid.innerHTML = matches.map(renderResultCard).join("");
+            grid.querySelectorAll(".reveal-element").forEach(function (el) {
+                el.classList.add("animate-reveal");
+            });
+        }
+
+        input.addEventListener("input", function (e) { run(e.target.value); });
+
+        var initialQuery = new URLSearchParams(location.search).get("q") || "";
+        input.value = initialQuery;
+
+        DJI_I18N.initLanguageToggle();
+        run(initialQuery);
+        DJI_SITE.initCommon();
+        document.addEventListener("dji:language-changed", function () { run(input.value); });
+    })();
+</script>
+</body></html>
