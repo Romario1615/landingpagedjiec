@@ -13,35 +13,40 @@
 </head>
 <body class="font-body-md overflow-x-hidden">
 <a class="skip-link" data-i18n="skip_link" href="#main-content">Saltar al contenido principal</a>
+<div aria-hidden="true" id="page-backdrop"></div>
+<canvas aria-hidden="true" id="particle-canvas"></canvas>
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-surface-overlay backdrop-blur-xl border-b border-glass-stroke">
 <div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
 <a class="flex items-center" data-i18n-aria-label="nav_home_aria" href="#inicio">
-<img alt="DJI Ecuador" class="h-8 md:h-10 object-contain" data-i18n-alt="nav_logo_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLtIhHDDh10Xw-SRWrrQvQgSsjcfPFUHQMZUkjqm0zzsVrJELJyHNorlxC3lVucoYQHYh96GRKpeE1wT92Zn6YikBgxUuEcaCcgyuc_ajFWHvwj9sDB5LdbDkkc4b3FHfeZFvmShA2m02MSh_tFf9WFwCC1OuAN8kM_6Kz_PxFHTiS9FtzbnZIh_mc_E2P_8qociMKVNnzGEASoZKBb8GxEB90Q8sJsJTU6PedXaUyZ6vnRL793eH7tphRQ"/>
+<span class="flex items-center gap-2.5">
+<span class="font-display-lg text-xl md:text-2xl font-bold tracking-tight text-gold leading-none">DJI</span>
+<span aria-hidden="true" class="w-px h-5 md:h-6 bg-gold/40"></span>
+<span class="leading-tight">
+<span class="block font-title-md text-xs md:text-sm tracking-[0.2em] text-on-surface">ECUADOR</span>
+<span class="hidden sm:block font-label-caps text-[8px] md:text-[9px] tracking-[0.2em] text-outline" data-i18n="nav_tagline">DISTRIBUIDOR AUTORIZADO</span>
+</span>
+</span>
 </a>
 <div class="hidden md:flex space-x-8 items-center" id="primary-nav">
-<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_drones" href="catalogo.html?cat=drones">DRONES</a>
-<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_camaras" href="catalogo.html?cat=camaras">CÁMARAS</a>
-<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_estabilizadores" href="catalogo.html?cat=accesorios">ESTABILIZADORES</a>
-<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_accesorios" href="catalogo.html?cat=accesorios">ACCESORIOS</a>
-<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-neon-cyan transition-colors" data-i18n="nav_soporte" href="#soporte">SOPORTE</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-gold transition-colors" data-i18n="nav_drones" href="catalogo.html?cat=drones">DRONES</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-gold transition-colors" data-i18n="nav_camaras" href="catalogo.html?cat=camaras">CÁMARAS</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-gold transition-colors" data-i18n="nav_estabilizadores" href="catalogo.html?cat=accesorios">ESTABILIZADORES</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-gold transition-colors" data-i18n="nav_accesorios" href="catalogo.html?cat=accesorios">ACCESORIOS</a>
+<a class="nav-link font-label-caps text-[12px] tracking-widest text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-gold transition-colors" data-i18n="nav_soporte" href="#soporte">SOPORTE</a>
 </div>
 <div class="flex items-center space-x-2 md:space-x-4">
-<a class="nav-3d-pill hidden sm:flex items-center gap-1.5" data-i18n-aria-label="nav_3d_aria" href="experiencia-3d.html">
-<span class="material-symbols-outlined text-[16px]" aria-hidden="true">deployed_code</span>
-<span>3D</span>
-</a>
 <div class="lang-toggle hidden md:flex items-center border border-glass-stroke text-[11px] font-label-caps tracking-wider" role="group" data-i18n-aria-label="lang_switch_aria">
 <button aria-pressed="true" class="js-lang-btn px-2.5 py-1.5 transition-colors" data-lang="es" type="button">ES</button>
 <button aria-pressed="false" class="js-lang-btn px-2.5 py-1.5 transition-colors" data-lang="en" type="button">EN</button>
 </div>
-<button aria-label="Buscar" class="material-symbols-outlined text-on-surface cursor-pointer hover:text-neon-cyan transition-colors" data-i18n-aria-label="search_aria" id="open-search" type="button">search</button>
-<button class="material-symbols-outlined text-on-surface cursor-pointer hover:text-neon-cyan transition-colors" data-i18n-aria-label="account_aria" data-i18n-title="account_soon" title="Próximamente" type="button">person</button>
-<a aria-label="Ver carrito" class="relative material-symbols-outlined text-on-surface cursor-pointer hover:text-neon-cyan transition-colors" data-i18n-aria-label="nav_cart_aria" href="carrito.html">
+<button aria-label="Buscar" class="material-symbols-outlined text-on-surface cursor-pointer hover:text-gold transition-colors" data-i18n-aria-label="search_aria" id="open-search" type="button">search</button>
+<button class="material-symbols-outlined text-on-surface cursor-pointer hover:text-gold transition-colors" data-i18n-aria-label="account_aria" data-i18n-title="account_soon" title="Próximamente" type="button">person</button>
+<a aria-label="Ver carrito" class="relative material-symbols-outlined text-on-surface cursor-pointer hover:text-gold transition-colors" data-i18n-aria-label="nav_cart_aria" href="carrito.html">
                 shopping_cart
-                <span class="cart-badge js-cart-badge absolute -top-2 -right-2 bg-neon-magenta text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                <span class="cart-badge js-cart-badge absolute -top-2 -right-2 bg-gold-deep text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
 </a>
-<a class="hidden md:block bg-neon-cyan text-deep-space px-6 py-2 font-label-caps text-[12px] font-bold tracking-tighter neon-glow-btn transition-all" data-i18n="nav_comprar" href="catalogo.html">
+<a class="hidden md:block bg-gold text-deep-space px-6 py-2 font-label-caps text-[12px] font-bold tracking-tighter gold-glow-btn transition-all" data-i18n="nav_comprar" href="catalogo.html">
                 COMPRAR
             </a>
 <button aria-controls="mobile-menu" aria-label="Abrir menú" class="material-symbols-outlined md:hidden text-on-surface" data-i18n-aria-label="menu_open_aria" id="open-mobile-menu" type="button">menu</button>
@@ -65,18 +70,13 @@
 <a class="font-title-md text-2xl js-close-menu flex items-center gap-3" href="carrito.html">
 <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
 <span data-i18n="nav_cart_aria">Ver carrito</span>
-</a>
-<a class="font-title-md text-2xl js-close-menu flex items-center gap-3 text-neon-cyan" href="experiencia-3d.html">
-<span class="material-symbols-outlined" aria-hidden="true">deployed_code</span>
-<span data-i18n="promo3d_title">Experiencia 3D Interactiva</span>
-</a>
-</nav>
+</a></nav>
 <div class="mt-auto pt-8 border-t border-glass-stroke flex flex-col gap-6">
 <div class="lang-toggle flex items-center border border-glass-stroke text-[12px] font-label-caps tracking-wider w-fit" role="group" data-i18n-aria-label="lang_switch_aria">
 <button aria-pressed="true" class="js-lang-btn px-3 py-2 transition-colors" data-lang="es" type="button">ES</button>
 <button aria-pressed="false" class="js-lang-btn px-3 py-2 transition-colors" data-lang="en" type="button">EN</button>
 </div>
-<a class="w-full text-center bg-neon-cyan text-deep-space px-6 py-3 font-label-caps text-[12px] font-bold tracking-tighter js-close-menu" data-i18n="nav_comprar" href="catalogo.html">COMPRAR</a>
+<a class="w-full text-center bg-gold text-deep-space px-6 py-3 font-label-caps text-[12px] font-bold tracking-tighter js-close-menu" data-i18n="nav_comprar" href="catalogo.html">COMPRAR</a>
 </div>
 </div>
 </dialog>
@@ -85,13 +85,13 @@
 <dialog id="search-dialog">
 <div class="search-panel glass-panel p-6">
 <div class="flex items-center gap-3 border-b border-glass-stroke pb-4 mb-4">
-<span class="material-symbols-outlined text-neon-cyan" aria-hidden="true">search</span>
+<span class="material-symbols-outlined text-gold" aria-hidden="true">search</span>
 <input aria-label="Buscar productos" autocomplete="off" class="flex-1 bg-transparent border-none outline-none text-lg placeholder:text-outline" data-i18n-aria-label="search_input_aria" data-i18n-placeholder="search_placeholder" id="search-input" placeholder="Buscar drones, cámaras, accesorios..." type="text"/>
 <button aria-label="Cerrar búsqueda" class="material-symbols-outlined text-on-surface" data-i18n-aria-label="search_close_aria" id="close-search" type="button">close</button>
 </div>
 <ul class="flex flex-col gap-1 max-h-[50vh] overflow-y-auto" id="search-results"></ul>
 <p class="text-outline text-sm py-4 text-center" data-i18n="search_empty" id="search-empty">Escribe para buscar en el catálogo.</p>
-<a class="hidden items-center gap-2 text-neon-cyan font-label-caps text-[12px] tracking-wider pt-2 border-t border-glass-stroke" id="search-view-all">
+<a class="hidden items-center gap-2 text-gold font-label-caps text-[12px] tracking-wider pt-2 border-t border-glass-stroke" id="search-view-all">
 <span data-i18n="search_view_all_results">Ver todos los resultados</span> <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
@@ -99,46 +99,33 @@
 
 <main id="main-content">
 <!-- Hero Section -->
-<header class="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#050506]" id="inicio">
-<!-- Enhanced Particle Background -->
-<canvas id="particle-canvas"></canvas>
-<!-- Potent Hero Image Integration -->
-<div class="absolute inset-0 z-10 flex items-center justify-center opacity-40 hero-image-container">
-<img alt="Mavic 3 Enterprise en vuelo" class="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-[10s] ease-out" data-i18n-alt="hero_image_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLsS_8zkj056vkFvNpACH14qUeCon1Z-446HgniNiFJ-tMqQWDn2cxG7rxrEeIEPIqAj1-WeaPlMPCI6iWMlcwebIyrUi6NLP_T4X1BjgXMfOME6tmkCATeSK3r_hM2jHM51QQ_juf6Fph-yzN_bLlQZtCYvElLfATAZIpJb--sD2-TcZ0PC6nnlwDAZL0dfkIruuyIpec_7naBBnJPHLitJ_kN93V3sdrqrAmOaprzmlssoN0fsCafQxlI"/>
+<header class="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden" id="inicio">
+<!-- Hero image carousel (real product/brand photography already used elsewhere
+     on the site). No prev/next arrows here — they'd sit at the same vertical
+     center as the hero text/CTAs and collide with them; the dots (bottom,
+     out of the way) are enough control for a full-bleed hero. -->
+<div class="absolute inset-0 z-10 hero-carousel" data-interval="5500">
+<div class="absolute inset-0 opacity-40 hero-image-container">
+<div class="hero-carousel-track"></div>
+</div>
+<div class="hero-carousel-dots"></div>
 </div>
 <div class="relative z-20 text-center px-4 reveal-element animate-reveal max-w-4xl">
-<p class="font-label-caps text-neon-cyan tracking-[0.4em] mb-4 text-[14px] opacity-80" data-i18n="hero_kicker">DISTRIBUIDOR AUTORIZADO ECUADOR</p>
+<p class="font-label-caps text-gold tracking-[0.4em] mb-4 text-[14px] opacity-80" data-i18n="hero_kicker">DISTRIBUIDOR AUTORIZADO ECUADOR</p>
 <h1 class="font-display-lg text-[48px] md:text-display-lg leading-tight mb-8">
 <span data-i18n="hero_title_l1">Drones &amp; Accesorios</span><br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-neon-magenta" data-i18n="hero_title_l2">Originales &amp; Profesionales</span>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold-deep" data-i18n="hero_title_l2">Originales &amp; Profesionales</span>
 </h1>
 <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-<a class="w-full md:w-auto px-10 py-4 bg-neon-cyan text-deep-space font-label-caps text-[14px] font-bold tracking-wider transition-all neon-glow-btn text-center block" data-i18n="hero_cta_primary" href="catalogo.html">
+<a class="w-full md:w-auto px-10 py-4 bg-gold text-deep-space font-label-caps text-[14px] font-bold tracking-wider transition-all gold-glow-btn text-center block" data-i18n="hero_cta_primary" href="catalogo.html">
                     EXPLORAR CATÁLOGO
                 </a>
-<button class="w-full md:w-auto px-10 py-4 border border-neon-cyan text-neon-cyan font-label-caps text-[14px] font-bold tracking-wider hover:bg-neon-cyan/10 transition-all js-scroll-link" data-i18n="hero_cta_secondary" data-target="productos" type="button">
+<button class="w-full md:w-auto px-10 py-4 border border-gold text-gold font-label-caps text-[14px] font-bold tracking-wider hover:bg-gold/10 transition-all js-scroll-link" data-i18n="hero_cta_secondary" data-target="productos" type="button">
                     VER PROMOCIONES
                 </button>
 </div>
 </div>
 </header>
-<!-- 3D Experience promo (upsell) -->
-<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto -mt-12 relative z-30 reveal-element">
-<a class="group glass-panel spotlight-card flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10 hover:border-neon-cyan transition-all" href="experiencia-3d.html">
-<div class="flex items-center gap-6">
-<span class="material-symbols-outlined text-neon-cyan text-5xl flex-shrink-0" aria-hidden="true">deployed_code</span>
-<div>
-<p class="font-label-caps text-neon-cyan tracking-widest text-[11px] mb-2" data-i18n="promo3d_kicker">ALCANCE AVANZADO</p>
-<h2 class="font-title-md text-xl md:text-2xl mb-1" data-i18n="promo3d_title">Experiencia 3D Interactiva</h2>
-<p class="text-outline text-sm max-w-lg" data-i18n="promo3d_desc">Gira, haz zoom y explora un dron DJI en 3D en tiempo real, directo en tu navegador. Sin apps, sin descargas.</p>
-</div>
-</div>
-<span class="w-full md:w-auto text-center bg-neon-cyan text-deep-space px-6 py-3 font-label-caps text-[12px] font-bold tracking-wider neon-glow-btn transition-all flex-shrink-0 flex items-center justify-center gap-2">
-<span data-i18n="promo3d_cta">PROBAR EXPERIENCIA 3D</span>
-<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-</span>
-</a>
-</section>
 <!-- Categories Section -->
 <section class="py-24 px-6 md:px-margin-desktop max-w-container-max mx-auto reveal-element" id="categorias">
 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
@@ -146,40 +133,40 @@
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2" data-i18n="categories_title">Explora por Categoría</h2>
 <p class="text-outline max-w-md" data-i18n="categories_subtitle">Equipos de alto rendimiento diseñados para cada necesidad profesional y creativa.</p>
 </div>
-<a class="text-neon-cyan font-label-caps flex items-center gap-2 group" href="catalogo.html">
+<a class="text-gold font-label-caps flex items-center gap-2 group" href="catalogo.html">
 <span data-i18n="categories_view_all">VER TODAS</span> <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter" id="category-grid">
 <!-- Category Items -->
 <a class="group cursor-pointer spotlight-card reveal-element block" href="catalogo.html?cat=drones">
-<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-neon-cyan group-hover:bg-neon-cyan/5">
+<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-gold group-hover:bg-gold/5">
 <img alt="Drones de Consumo" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-i18n-alt="cat_drones_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLvnWSzrulMAT2GW-FACL5sUCobrZDPXx7YOh5QqyAJ6ZetRlo-08eB-4gDHyelheJCFhdTuy8mSTytoO4R9ooAhpMAzJGB-GRyiCdE7IAXBX_k_2RWRqJqvJyG2Xx6oqrsjoLZP2xp2JOk6XThJLWKNQzXL1RjZdKxfKXhRUgf-nLRQJ65j36KVFY5KQYwzUZN3dTEww-1e8ny6jv2QyRbABYE7yLiRxqDvqEbZ2CmG4wb_aC88XT8leBc"/>
 </div>
-<h3 class="font-title-md text-center text-[18px] group-hover:text-neon-cyan transition-colors" data-i18n="cat_drones_title">Drones de Consumo</h3>
+<h3 class="font-title-md text-center text-[18px] group-hover:text-gold transition-colors" data-i18n="cat_drones_title">Drones de Consumo</h3>
 </a>
 <a class="group cursor-pointer spotlight-card reveal-element block" href="catalogo.html?cat=camaras">
-<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-neon-magenta group-hover:bg-neon-magenta/5">
+<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-gold-deep group-hover:bg-gold-deep/5">
 <img alt="Cámaras de Acción" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-i18n-alt="cat_camaras_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLvG6vIL6d_HvjGrtcK3sYJOih3I04peX6mTmiaNFxWbC6qbmib_ZLHVKQ_GyalP4nonbwZf6gkP5fsKMDmZ_9JT4ecg931JfHhyZiKCBWF1ZgsG6IpYyCtbQLsNlQLliKAJ0tJBqAFBdLLue2IwLN2HeUIKRXgFpZ5980KFI1Q7VxUJh17yYi_8El8z6Dy-sSzqvosp33xSJpOOSeMEGxD5T7QttTVuB7C6HDu-qlf_7r9cursj0Q8uIVpz"/>
 </div>
-<h3 class="font-title-md text-center text-[18px] group-hover:text-neon-magenta transition-colors" data-i18n="cat_camaras_title">Cámaras de Acción</h3>
+<h3 class="font-title-md text-center text-[18px] group-hover:text-gold-deep transition-colors" data-i18n="cat_camaras_title">Cámaras de Acción</h3>
 </a>
 <a class="group cursor-pointer spotlight-card reveal-element block" href="catalogo.html?cat=enterprise">
-<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-neon-cyan group-hover:bg-neon-cyan/5">
+<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-gold group-hover:bg-gold/5">
 <img alt="Enterprise" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-i18n-alt="cat_enterprise_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLsS_8zkj056vkFvNpACH14qUeCon1Z-446HgniNiFJ-tMqQWDn2cxG7rxrEeIEPIqAj1-WeaPlMPCI6iWMlcwebIyrUi6NLP_T4X1BjgXMfOME6tmkCATeSK3r_hM2jHM51QQ_juf6Fph-yzN_bLlQZtCYvElLfATAZIpJb--sD2-TcZ0PC6nnlwDAZL0dfkIruuyIpec_7naBBnJPHLitJ_kN93V3sdrqrAmOaprzmlssoN0fsCafQxlI"/>
 </div>
-<h3 class="font-title-md text-center text-[18px] group-hover:text-neon-cyan transition-colors" data-i18n="cat_enterprise_title">Enterprise</h3>
+<h3 class="font-title-md text-center text-[18px] group-hover:text-gold transition-colors" data-i18n="cat_enterprise_title">Enterprise</h3>
 </a>
 <a class="group cursor-pointer spotlight-card reveal-element block" href="catalogo.html?cat=accesorios">
-<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-neon-magenta group-hover:bg-neon-magenta/5">
+<div class="aspect-square glass-panel flex items-center justify-center p-8 mb-4 group-hover:border-gold-deep group-hover:bg-gold-deep/5">
 <img alt="Accesorios" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-i18n-alt="cat_accesorios_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLvnE48sBYNvIbIys81Usc6cYQBSCktX_y5Udf8Yllqgfg7cvjUdpIG5Q-cNatfQrwThL4eT1pFS-ogkJWCgpOxoDwL7Ls-okczme5Z4-LrAoL72ATU1yF6JNv4ikCDJXkYKGgKQ8h-N2VOyyQAdcvQ3F5BZ_S1E73D2m_C_HkqWSR6Y08IptLuZBxkxMvrwTspLDFJ94R-64HGYTNXjrQ1NI24zi5dKUxEmRzAVHlFEvhNyn4qHr9poIZcp"/>
 </div>
-<h3 class="font-title-md text-center text-[18px] group-hover:text-neon-magenta transition-colors" data-i18n="cat_accesorios_title">Audio &amp; Accesorios</h3>
+<h3 class="font-title-md text-center text-[18px] group-hover:text-gold-deep transition-colors" data-i18n="cat_accesorios_title">Audio &amp; Accesorios</h3>
 </a>
 </div>
 </section>
 <!-- Latest Products Section -->
-<section class="py-24 bg-surface-container-lowest reveal-element" id="productos">
+<section class="py-24 reveal-element" id="productos">
 <div class="px-6 md:px-margin-desktop max-w-container-max mx-auto">
 <div class="flex items-center gap-4 mb-12">
 <div class="h-[1px] flex-1 bg-glass-stroke"></div>
@@ -200,19 +187,19 @@
 <img alt="Vista de alta resolución del DJI Mavic 3 Enterprise" class="w-full h-full object-cover opacity-60" data-i18n-alt="industrial_hero_alt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-7P1YBRjYe46yQUTETpy-LWF6rTSoly_F8xtgcdDub-af6wCnkJVDQXpr7HHdJS9bufpvIW_kjzLl8WKNDU_rB0GrGPlJ9gCt@atnaPWSgC4pWCxGTFbrCCw6NdQONzD64YqM7RdToSD59pxhkWzJooMbp8qgbT2nLU7nw91ADyrAnWYFzdaqxfEqtmsrIZvEgYbHpGveXFzJ4qpbg5ydiMiAfYutuZVICD5En4HZpm5EmFUFdT5nGQ"/>
 </div>
 <div class="relative z-10 p-10 h-full flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
-<p class="font-label-caps text-neon-cyan mb-2" data-i18n="industrial_kicker">MAVIC 3 ENTERPRISE SERIES</p>
+<p class="font-label-caps text-gold mb-2" data-i18n="industrial_kicker">MAVIC 3 ENTERPRISE SERIES</p>
 <h3 class="font-display-lg text-[32px] md:text-[40px] mb-4" data-i18n="industrial_headline">Eficiencia en cada misión</h3>
 <p class="text-outline max-w-md mb-8" data-i18n="industrial_desc">La herramienta definitiva para inspección, búsqueda, rescate y topografía con precisión centimétrica.</p>
-<a class="w-fit bg-neon-cyan text-deep-space px-8 py-3 font-label-caps font-bold transition-all neon-glow-btn" data-i18n="industrial_cta" href="catalogo.html?cat=enterprise">DESCUBRIR</a>
+<a class="w-fit bg-gold text-deep-space px-8 py-3 font-label-caps font-bold transition-all gold-glow-btn" data-i18n="industrial_cta" href="catalogo.html?cat=enterprise">DESCUBRIR</a>
 </div>
 </div>
-<div class="md:col-span-4 md:row-span-1 glass-panel p-8 flex flex-col justify-center border-neon-magenta/20 reveal-element spotlight-card hover:border-neon-magenta">
-<span class="material-symbols-outlined text-neon-magenta text-5xl mb-4" aria-hidden="true">agriculture</span>
+<div class="md:col-span-4 md:row-span-1 glass-panel p-8 flex flex-col justify-center border-gold-deep/20 reveal-element spotlight-card hover:border-gold-deep">
+<span class="material-symbols-outlined text-gold-deep text-5xl mb-4" aria-hidden="true">agriculture</span>
 <h4 class="font-title-md mb-2" data-i18n="agri_title">Agricultura de Precisión</h4>
 <p class="text-body-md text-outline" data-i18n="agri_desc">Optimice sus cultivos con la serie Agras T. Pulverización inteligente y mapeo multiespectral.</p>
 </div>
-<div class="md:col-span-4 md:row-span-1 glass-panel p-8 flex flex-col justify-center border-neon-cyan/20 reveal-element spotlight-card hover:border-neon-cyan">
-<span class="material-symbols-outlined text-neon-cyan text-5xl mb-4" aria-hidden="true">engineering</span>
+<div class="md:col-span-4 md:row-span-1 glass-panel p-8 flex flex-col justify-center border-gold/20 reveal-element spotlight-card hover:border-gold">
+<span class="material-symbols-outlined text-gold text-5xl mb-4" aria-hidden="true">engineering</span>
 <h4 class="font-title-md mb-2" data-i18n="support_title">Soporte Técnico Especializado</h4>
 <p class="text-body-md text-outline" data-i18n="support_desc">Único centro autorizado en Ecuador con repuestos originales y técnicos certificados.</p>
 </div>
@@ -223,8 +210,8 @@
 <div class="px-6 md:px-margin-desktop max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
 <div class="flex items-start gap-6 group">
-<div class="p-4 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 group-hover:bg-neon-cyan/20 transition-colors">
-<span class="material-symbols-outlined text-neon-cyan text-4xl" aria-hidden="true">verified_user</span>
+<div class="p-4 rounded-full bg-gold/10 border border-gold/20 group-hover:bg-gold/20 transition-colors">
+<span class="material-symbols-outlined text-gold text-4xl" aria-hidden="true">verified_user</span>
 </div>
 <div>
 <h4 class="font-title-md mb-2" data-i18n="trust_secure_title">Compra Segura</h4>
@@ -232,8 +219,8 @@
 </div>
 </div>
 <div class="flex items-start gap-6 group">
-<div class="p-4 rounded-full bg-neon-magenta/10 border border-neon-magenta/20 group-hover:bg-neon-magenta/20 transition-colors">
-<span class="material-symbols-outlined text-neon-magenta text-4xl" aria-hidden="true">local_shipping</span>
+<div class="p-4 rounded-full bg-gold-deep/10 border border-gold-deep/20 group-hover:bg-gold-deep/20 transition-colors">
+<span class="material-symbols-outlined text-gold-deep text-4xl" aria-hidden="true">local_shipping</span>
 </div>
 <div>
 <h4 class="font-title-md mb-2" data-i18n="trust_shipping_title">Envíos a Nivel Nacional</h4>
@@ -241,8 +228,8 @@
 </div>
 </div>
 <div class="flex items-start gap-6 group">
-<div class="p-4 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 group-hover:bg-neon-cyan/20 transition-colors">
-<span class="material-symbols-outlined text-neon-cyan text-4xl" aria-hidden="true">workspace_premium</span>
+<div class="p-4 rounded-full bg-gold/10 border border-gold/20 group-hover:bg-gold/20 transition-colors">
+<span class="material-symbols-outlined text-gold text-4xl" aria-hidden="true">workspace_premium</span>
 </div>
 <div>
 <h4 class="font-title-md mb-2" data-i18n="trust_warranty_title">Garantía Real</h4>
@@ -254,48 +241,55 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-deep-space py-24 border-t border-glass-stroke">
+<footer class="footer-marble py-24 border-t border-glass-stroke">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto">
 <div class="flex flex-col space-y-8">
-<img alt="DJI Ecuador" class="h-12 object-contain w-fit" data-i18n-alt="nav_logo_alt" src="https://lh3.googleusercontent.com/aida/AP1WRLtIhHDDh10Xw-SRWrrQvQgSsjcfPFUHQMZUkjqm0zzsVrJELJyHNorlxC3lVucoYQHYh96GRKpeE1wT92Zn6YikBgxUuEcaCcgyuc_ajFWHvwj9sDB5LdbDkkc4b3FHfeZFvmShA2m02MSh_tFf9WFwCC1OuAN8kM_6Kz_PxFHTiS9FtzbnZIh_mc_E2P_8qociMKVNnzGEASoZKBb8GxEB90Q8sJsJTU6PedXaUyZ6vnRL793eH7tphRQ"/>
+<div class="flex items-center gap-3">
+<span class="font-display-lg text-3xl font-bold tracking-tight text-gold leading-none">DJI</span>
+<span aria-hidden="true" class="w-px h-8 bg-gold/40"></span>
+<div class="leading-tight">
+<span class="block font-title-md text-base tracking-[0.15em] text-on-surface">ECUADOR</span>
+<span class="block font-label-caps text-[10px] tracking-[0.2em] text-outline" data-i18n="nav_tagline">DISTRIBUIDOR AUTORIZADO</span>
+</div>
+</div>
 <p class="text-outline text-body-md" data-i18n="footer_about">Distribuidores autorizados líderes en tecnología de drones y estabilización en el mercado ecuatoriano.</p>
 <div class="flex space-x-4">
-<a aria-label="Instagram" class="text-outline hover:text-neon-cyan transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<a aria-label="Instagram" class="text-outline hover:text-gold transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
 <svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg>
 </a>
-<a aria-label="YouTube" class="text-outline hover:text-neon-magenta transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<a aria-label="YouTube" class="text-outline hover:text-gold-deep transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
 <svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
 </a>
-<a aria-label="TikTok" class="text-outline hover:text-neon-cyan transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
+<a aria-label="TikTok" class="text-outline hover:text-gold transition-all hover:scale-110" href="#" rel="noopener noreferrer" target="_blank">
 <svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"></path></svg>
 </a>
 </div>
 </div>
 <div class="space-y-6">
-<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_categories_heading">CATEGORÍAS</h5>
+<h5 class="font-label-caps text-gold tracking-widest" data-i18n="footer_categories_heading">CATEGORÍAS</h5>
 <ul class="space-y-3 text-outline text-body-md">
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_consumo" href="catalogo.html?cat=drones">Consumo</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_industrial" href="catalogo.html?cat=enterprise">Industrial</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_camaras" href="catalogo.html?cat=camaras">Cámaras de Acción</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_cat_estabilizadores" href="catalogo.html?cat=accesorios">Estabilizadores</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_cat_consumo" href="catalogo.html?cat=drones">Consumo</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_cat_industrial" href="catalogo.html?cat=enterprise">Industrial</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_cat_camaras" href="catalogo.html?cat=camaras">Cámaras de Acción</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_cat_estabilizadores" href="catalogo.html?cat=accesorios">Estabilizadores</a></li>
 </ul>
 </div>
 <div class="space-y-6" id="soporte">
-<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_support_heading">SOPORTE</h5>
+<h5 class="font-label-caps text-gold tracking-widest" data-i18n="footer_support_heading">SOPORTE</h5>
 <ul class="space-y-3 text-outline text-body-md">
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_tech" href="#">Servicio Técnico</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_warranty" href="#">Garantías</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_shipping" href="#">Políticas de Envío</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" data-i18n="footer_support_contact" href="#">Contacto</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_support_tech" href="#">Servicio Técnico</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_support_warranty" href="#">Garantías</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_support_shipping" href="#">Políticas de Envío</a></li>
+<li><a class="hover:text-gold transition-colors" data-i18n="footer_support_contact" href="#">Contacto</a></li>
 </ul>
 </div>
 <div class="space-y-6">
-<h5 class="font-label-caps text-on-surface tracking-widest" data-i18n="footer_newsletter_heading">NEWSLETTER</h5>
+<h5 class="font-label-caps text-gold tracking-widest" data-i18n="footer_newsletter_heading">NEWSLETTER</h5>
 <p class="text-outline text-body-md" data-i18n="footer_newsletter_desc">Recibe las últimas novedades y ofertas exclusivas.</p>
 <form class="relative" id="newsletter-form">
 <label class="sr-only" data-i18n="footer_newsletter_email_label" for="newsletter-email">Correo electrónico</label>
-<input class="w-full bg-surface-container border-none border-b border-glass-stroke py-3 font-code-sm text-neon-cyan focus:ring-0 focus:border-neon-cyan transition-all" data-i18n-placeholder="footer_newsletter_placeholder" id="newsletter-email" placeholder="Email" required="" type="email"/>
-<button aria-label="Suscribirse" class="absolute right-0 top-1/2 -translate-y-1/2 text-neon-cyan p-2" data-i18n-aria-label="footer_newsletter_submit_aria" type="submit">
+<input class="w-full bg-surface-container border-none border-b border-glass-stroke py-3 font-code-sm text-gold focus:ring-0 focus:border-gold transition-all" data-i18n-placeholder="footer_newsletter_placeholder" id="newsletter-email" placeholder="Email" required="" type="email"/>
+<button aria-label="Suscribirse" class="absolute right-0 top-1/2 -translate-y-1/2 text-gold p-2" data-i18n-aria-label="footer_newsletter_submit_aria" type="submit">
 <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
 </button>
 </form>
@@ -306,7 +300,7 @@
 </div>
 </footer>
 <!-- FAB for WhatsApp -->
-<a aria-label="Contactar por WhatsApp" class="fixed bottom-8 right-8 z-[60] bg-[#25D366] w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform mag-glow-btn" data-i18n-aria-label="whatsapp_aria" href="#">
+<a aria-label="Contactar por WhatsApp" class="fixed bottom-8 right-8 z-[60] bg-[#25D366] w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform gold-glow-btn" data-i18n-aria-label="whatsapp_aria" href="#">
 <svg fill="white" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path>
 </svg>

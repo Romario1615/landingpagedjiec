@@ -3,7 +3,7 @@ tailwind.config = {
     theme: {
         extend: {
             "colors": {
-                "neon-magenta": "#FF00FF",
+                "gold-deep": "#8B6F1F",
                 "tertiary-fixed-dim": "#a8c8ff",
                 "outline": "#849495",
                 "primary-fixed-dim": "#00dbe9",
@@ -30,7 +30,7 @@ tailwind.config = {
                 "on-surface": "#e5e2e3",
                 "on-error-container": "#ffdad6",
                 "surface-container": "#201f20",
-                "neon-cyan": "#00F0FF",
+                "gold": "#C9A227",
                 "primary": "#dbfcff",
                 "surface-container-high": "#2a2a2b",
                 "primary-fixed": "#7df4ff",
@@ -57,10 +57,10 @@ tailwind.config = {
                 "surface-container-highest": "#353436"
             },
             "borderRadius": {
-                "DEFAULT": "0.125rem",
-                "lg": "0.25rem",
-                "xl": "0.5rem",
-                "full": "0.75rem"
+                "DEFAULT": "0.5rem",
+                "lg": "0.75rem",
+                "xl": "1.25rem",
+                "full": "9999px"
             },
             "spacing": {
                 "stack-unit": "8px",
